@@ -121,7 +121,7 @@ body {
     display: none;
     margin-top: 230px;
     font-size: 32px;
-    border: 1px solid;
+    border: 0px solid;
 }
 
 #ega{
@@ -141,10 +141,23 @@ img{
     width: 65px;
 }
 
-#Licence{
-    margin-left: 5px;
-    margin-top: 60px;
-    width: 117px;
+#GitHubLogo{
+    width: auto;
+    height: 40px;
 }
 
+#Licence{
+    width: auto;
+    height: 40px;
+}
 
+footer{
+    border: 0px solid;
+     margin-top: 60px;
+     margin-left: 5px;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
