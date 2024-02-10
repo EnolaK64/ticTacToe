@@ -3,6 +3,14 @@ body {
     padding: 0px;
 }
 
+#all {
+    position: relative;
+    margin: 0 auto;
+    top: 5px;
+    width: 218px;
+    height: 218px;
+}
+
 #container>div {
     border: 2px solid;
     margin: -1px;
@@ -20,18 +28,15 @@ body {
     width: 214px;
     height: 214px;
     /* border: 1px solid red; */
-    margin: 5px;
-
-
 }
 
 
 
 #WinDL {
-    margin-top: 107px;
-    margin-left: -39px;
+    margin-top: 106px;
+    margin-left: -45px;
     position: absolute;
-    width: calc(1px * sqrt(91677));
+    width: calc(1px * sqrt(91630));
     height: 1px;
     border-radius: 90px;
     background: #000;
@@ -39,10 +44,10 @@ body {
 }
 
 #WinDR {
-    margin-top: 106px;
-    margin-left: -39px;
+    margin-top: 107px;
+    margin-left: -44px;
     position: absolute;
-    width: calc(1px * sqrt(91677));
+    width: calc(1px * sqrt(91630));
     height: 1px;
     border-radius: 90px;
     background: #000;
@@ -51,7 +56,7 @@ body {
 
 
 #WinH1 {
-    margin-top: 32.5px;
+    margin-top: 32px;
     margin-left: 5px;
     position: absolute;
     width: 214px;
@@ -61,7 +66,7 @@ body {
 }
 
 #WinH2 {
-    margin-top: calc(213px/2);
+    margin-top: 106px;
     margin-left: 5px;
     position: absolute;
     width: 214px;
@@ -71,7 +76,7 @@ body {
 }
 
 #WinH3 {
-    margin-top: 180.5px;
+    margin-top: 182px;
     margin-left: 5px;
     position: absolute;
     width: 214px;
@@ -81,8 +86,8 @@ body {
 }
 
 #WinV1 {
-    margin-top:0px;
-    margin-left: 37px;
+    margin-top: 0px;
+    margin-left: 32px;
     position: absolute;
     width: 1px;
     height: 213px;
@@ -91,8 +96,8 @@ body {
 }
 
 #WinV2 {
-    margin-top:0px;
-    margin-left: 111px;
+    margin-top: 0px;
+    margin-left: 106px;
     position: absolute;
     width: 1px;
     height: 213px;
@@ -101,8 +106,8 @@ body {
 }
 
 #WinV3 {
-    margin-top:0px;
-    margin-left: 185px;
+    margin-top: 0px;
+    margin-left: 182px;
     position: absolute;
     width: 1px;
     height: 213px;
@@ -117,47 +122,59 @@ body {
     display: none;
 }
 
-.winTxt{
+.winTxt {
     display: none;
-    margin-top: 230px;
+    top: 230px;
     font-size: 32px;
     border: 0px solid;
+    position: absolute;
 }
 
-#ega{
-    margin-left: 62px;
+#texts{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* #ega {
+    text-align: center;
 
 }
 
-#WinX{
-    margin-left: 21px;
+#WinX {
+
+    text-align: center;
+
 }
 
-#WinO{
-    margin-left: 21px;
-}
+#WinO {
+    text-align: center;
 
-img{
+} */
+
+img {
     width: 65px;
 }
 
-#GitHubLogo{
+#GitHubLogo {
     width: auto;
     height: 40px;
 }
 
-#Licence{
+#Licence {
     width: auto;
     height: 40px;
 }
 
-footer{
+footer {
     border: 0px solid;
-     margin-top: 60px;
-     margin-left: 5px;
+    margin-top: 60px;
+    margin-left: 5px;
+    position: fixed;
+    bottom: 5px;
 }
 
-a{
+a {
     color: white;
     text-decoration: none;
 }
