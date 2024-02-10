@@ -11,3 +11,10 @@ So you can see the result using this link : https://enolak64.github.io/ticTacToe
 Bonjour j'ai fait ce morpion en utilisant uniquement du HTML et du CSS pour la partie graphique et du JavaScript pour la partie logique du jeu. J'ai fait ce morpion dans le but de m'amuser et de m'ameliorer dans la programation avec JavaScript. De plus je l'ai fait dans un temps assez court (une à deux semaine) c'est donc pour cela qu'il n'est pas parfait ni très beau. Et pour finir j'ai decidé de le partager sur GitHub pour en garder une trace sur internet et en espérant que cela puisse etre utile à d'autres personnes.
 
 Vous pouvez donc voir le résultat en utilisant le lien suivant : https://enolak64.github.io/ticTacToe
+
+
+ticTacToe © 2024 by EnolaK64 is licensed under CC BY-NC-SA 4.0 
+## License
+
+ticTacToe © 2024 by EnolaK64 is licensed under CC BY-NC-SA 4.0 
+
