@@ -1,0 +1,144 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+#container>div {
+    border: 2px solid;
+    margin: -1px;
+    width: 64px;
+    height: 64px;
+
+}
+
+#container {
+    display: grid;
+    grid-template-columns: repeat(3, 65px);
+    grid-template-rows: repeat(3, 65px);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    width: 214px;
+    height: 214px;
+    /* border: 1px solid red; */
+    margin: 5px;
+
+
+}
+
+
+
+#WinDL {
+    margin-top: 107px;
+    margin-left: -39px;
+    position: absolute;
+    width: calc(1px * sqrt(91677));
+    height: 1px;
+    border-radius: 90px;
+    background: #000;
+    rotate: 45deg;
+}
+
+#WinDR {
+    margin-top: 106px;
+    margin-left: -39px;
+    position: absolute;
+    width: calc(1px * sqrt(91677));
+    height: 1px;
+    border-radius: 90px;
+    background: #000;
+    rotate: -45deg;
+}
+
+
+#WinH1 {
+    margin-top: 32.5px;
+    margin-left: 5px;
+    position: absolute;
+    width: 214px;
+    height: 1px;
+    border-radius: 90px;
+    background: #000;
+}
+
+#WinH2 {
+    margin-top: calc(213px/2);
+    margin-left: 5px;
+    position: absolute;
+    width: 214px;
+    height: 1px;
+    border-radius: 90px;
+    background: #000;
+}
+
+#WinH3 {
+    margin-top: 180.5px;
+    margin-left: 5px;
+    position: absolute;
+    width: 214px;
+    height: 1px;
+    border-radius: 90px;
+    background: #000;
+}
+
+#WinV1 {
+    margin-top:0px;
+    margin-left: 37px;
+    position: absolute;
+    width: 1px;
+    height: 213px;
+    border-radius: 90px;
+    background: #000;
+}
+
+#WinV2 {
+    margin-top:0px;
+    margin-left: 111px;
+    position: absolute;
+    width: 1px;
+    height: 213px;
+    border-radius: 90px;
+    background: #000;
+}
+
+#WinV3 {
+    margin-top:0px;
+    margin-left: 185px;
+    position: absolute;
+    width: 1px;
+    height: 213px;
+    border-radius: 90px;
+    background: #000;
+}
+
+.Win {
+    border: 1px solid;
+    margin-top: 0px;
+    position: absolute;
+    display: none;
+}
+
+.winTxt{
+    display: none;
+    margin-top: 230px;
+    font-size: 32px;
+    border: 1px solid;
+}
+
+#ega{
+    margin-left: 62px;
+
+}
+
+#WinX{
+    margin-left: 21px;
+}
+
+#WinO{
+    margin-left: 21px;
+}
+
+img{
+    width: 65px;
+}
+
+
