@@ -14,7 +14,7 @@ Vous pouvez donc voir le résultat en utilisant le lien suivant : https://enolak
 
 
 ticTacToe © 2024 by EnolaK64 is licensed under CC BY-NC-SA 4.0 
-## Authors
+## Author
 
 - [@EnolaK64](https://www.github.com/enolak64)
 
