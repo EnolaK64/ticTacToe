@@ -178,3 +178,10 @@ a {
     color: white;
     text-decoration: none;
 }
+
+@media print { 
+    body{
+        display: none;
+    }
+    
+}
