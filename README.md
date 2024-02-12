@@ -13,7 +13,6 @@ Bonjour j'ai fait ce morpion en utilisant uniquement du HTML et du CSS pour la p
 Vous pouvez donc voir le résultat en utilisant le lien suivant : https://enolak64.github.io/ticTacToe
 
 
-ticTacToe © 2024 by EnolaK64 is licensed under CC BY-NC-SA 4.0 
 ## Author
 
 - [@EnolaK64](https://www.github.com/enolak64)
