@@ -1,5 +1,7 @@
 //All variables
 
+var reset = document.getElementById("reset")
+
 //state vars
 var roundToCross = true
 
@@ -34,6 +36,9 @@ var center = document.getElementById("C")
 //images
 var Icenter = document.getElementById("IC")
 
+var IAll = [IC1, IC2,IC3,IC4,IM1,IM2,IM3,IM4,Icenter]
+
+
 //Wins
 var WinDL = document.getElementById("WinDL")
 var WinDR = document.getElementById("WinDR")
@@ -43,9 +48,10 @@ var WinH3 = document.getElementById("WinH3")
 var WinV1 = document.getElementById("WinV1")
 var WinV2 = document.getElementById("WinV2")
 var WinV3 = document.getElementById("WinV3")
-var WinAll = [WinDL, WinDR, WinH1, WinH2, WinH3, WinV1, WinV2, WinV3]
 var WinO = document.getElementById("WinO")
 var WinX = document.getElementById("WinX")
+var WinAll = [WinDL, WinDR, WinH1, WinH2, WinH3, WinV1, WinV2, WinV3, WinO, WinX]
+
 
 //ega 
 var ega = document.getElementById("ega")
@@ -127,6 +133,12 @@ function FWinV3() {
 function hideWins() {
     for (let i = 0; i < WinAll.length; i++) {
         WinAll[i].style.display = "none"
+    }
+}
+
+function Freset(){
+    for (let i = 0; i < IAll.length; i++) {
+        IAll[i].src = ""
     }
 }
 
@@ -255,16 +267,16 @@ function checkWins() {
             }
 
             else if (whichSide == 2) {
-                X = 1
-                Y = 0
-                Z = 4
-                A = 6
+                X = 1;
+                Y = 0;
+                Z = 4;
+                A = 6;
             }
             else if (whichSide == 3) {
-                X = 3
-                Y = 0
-                Z = 2
-                A = 7
+                X = 3;
+                Y = 0;
+                Z = 2;
+                A = 7;
             }
 
             if (
@@ -289,49 +301,64 @@ function checkWins() {
             console.log("round: " + round);
             console.log(("winFound: " + winFound));
         }
-        whichSide++
+        whichSide++;
     }
 
     if (round >= 9 && winFound == false) {
         console.log(winFound);
-        ega.style.display = "inline"
-    }
+        ega.style.display = "inline";
+    };
     
-}
+};
 
 
 C1.addEventListener('click', () => {
-    played("IC1", IC1)
-})
+    played("IC1", IC1);
+});
 
 C2.addEventListener('click', () => {
-    played("IC2", IC2)
-})
+    played("IC2", IC2);
+});
 
 C3.addEventListener('click', () => {
-    played("IC3", IC3)
-})
+    played("IC3", IC3);
+});
 
 C4.addEventListener('click', () => {
-    played("IC4", IC4)
-})
+    played("IC4", IC4);
+});
 
 M1.addEventListener('click', () => {
-    played("IM1", IM1)
-})
+    played("IM1", IM1);
+});
 
 M2.addEventListener('click', () => {
-    played("IM2", IM2)
-})
+    played("IM2", IM2);
+});
 
 M3.addEventListener('click', () => {
-    played("IM3", IM3)
-})
+    played("IM3", IM3);
+});
 
 M4.addEventListener('click', () => {
-    played("IM4", IM4)
-})
+    played("IM4", IM4);
+});
 
 center.addEventListener('click', () => {
-    played("Icenter", Icenter)
-})
+    played("Icenter", Icenter);
+});
+
+reset.addEventListener( 'click',() => {
+    Freset();
+    hideWins();
+    winFound = false;
+    ega.style.display = "none";
+    round = 0;
+    roundToCross = true;
+    boxState =
+    [
+        false,
+        false, false, false, false,
+        false, false, false, false,
+    ];
+});
