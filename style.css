@@ -193,3 +193,8 @@ a {
     }
     
 }
+
+.themeImg{
+    display: none;
+    width: 40px;
+}

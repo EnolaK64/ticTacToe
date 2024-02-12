@@ -1,42 +1,60 @@
 //All variables
 
-var reset = document.getElementById("reset")
+// theme
+var body = document.querySelector("body")
+
+// theme imgs
+var sun = document.getElementById("sun");
+var moon = document.getElementById("moon");
+
+// save the theme choose
+var darkMode = localStorage.getItem("darkMode")
+if (darkMode == undefined) {
+    console.log("test");
+    darkMode = false
+    localStorage.setItem("darkMode", darkMode)
+}
+
+
+//reset btn
+var reset = document.getElementById("reset");
 
 //state vars
 var roundToCross = true
 
 //grid vars
 //Corners
-var C1 = document.getElementById("C1")
-var C2 = document.getElementById("C2")
-var C3 = document.getElementById("C3")
-var C4 = document.getElementById("C4")
+var C1 = document.getElementById("C1");
+var C2 = document.getElementById("C2");
+var C3 = document.getElementById("C3");
+var C4 = document.getElementById("C4");
 //images
-var IC1 = document.getElementById("IC1")
-var IC2 = document.getElementById("IC2")
-var IC3 = document.getElementById("IC3")
-var IC4 = document.getElementById("IC4")
+var IC1 = document.getElementById("IC1");
+var IC2 = document.getElementById("IC2");
+var IC3 = document.getElementById("IC3");
+var IC4 = document.getElementById("IC4");
 
 
 
 
 //Middles
-var M1 = document.getElementById("M1")
-var M2 = document.getElementById("M2")
-var M3 = document.getElementById("M3")
-var M4 = document.getElementById("M4")
+var M1 = document.getElementById("M1");
+var M2 = document.getElementById("M2");
+var M3 = document.getElementById("M3");
+var M4 = document.getElementById("M4");
 //images
-var IM1 = document.getElementById("IM1")
-var IM2 = document.getElementById("IM2")
-var IM3 = document.getElementById("IM3")
-var IM4 = document.getElementById("IM4")
+var IM1 = document.getElementById("IM1");
+var IM2 = document.getElementById("IM2");
+var IM3 = document.getElementById("IM3");
+var IM4 = document.getElementById("IM4");
 
 //Center
-var center = document.getElementById("C")
+var center = document.getElementById("C");
 //images
-var Icenter = document.getElementById("IC")
+var Icenter = document.getElementById("IC");
 
-var IAll = [IC1, IC2,IC3,IC4,IM1,IM2,IM3,IM4,Icenter]
+var IAll = [IC1, IC2, IC3, IC4, IM1, IM2, IM3, IM4, Icenter];
+var BoxAll = [C1, C2, C3, C4, M1, M2, M3, M4, center]
 
 
 //Wins
@@ -51,6 +69,7 @@ var WinV3 = document.getElementById("WinV3")
 var WinO = document.getElementById("WinO")
 var WinX = document.getElementById("WinX")
 var WinAll = [WinDL, WinDR, WinH1, WinH2, WinH3, WinV1, WinV2, WinV3, WinO, WinX]
+
 
 
 //ega 
@@ -92,6 +111,25 @@ var boxStateNum =
 */
 //count round
 var round = 0
+
+
+//string to bollean converter
+function strToBool(str) {
+    if (str == "false") {
+        str = false
+        return str
+    }
+    else if (str == "true") {
+        str = true
+        return str
+    }
+    else if (str == true || str == false) {
+        return str
+    }
+    else {
+        return "error"
+    }
+}
 
 
 //fuctions if win
@@ -136,7 +174,7 @@ function hideWins() {
     }
 }
 
-function Freset(){
+function Freset() {
     for (let i = 0; i < IAll.length; i++) {
         IAll[i].src = ""
     }
@@ -290,10 +328,10 @@ function checkWins() {
                 foundAWin(A)
                 winFound = true
                 console.log(boxState);
-                if (boxState[X]  == "C") {
+                if (boxState[X] == "C") {
                     WinX.style.display = "inline"
                 }
-                else if (boxState[X] == "R"){
+                else if (boxState[X] == "R") {
                     WinO.style.display = "inline"
                 }
             }
@@ -308,7 +346,7 @@ function checkWins() {
         console.log(winFound);
         ega.style.display = "inline";
     };
-    
+
 };
 
 
@@ -348,7 +386,7 @@ center.addEventListener('click', () => {
     played("Icenter", Icenter);
 });
 
-reset.addEventListener( 'click',() => {
+reset.addEventListener('click', () => {
     Freset();
     hideWins();
     winFound = false;
@@ -356,9 +394,86 @@ reset.addEventListener( 'click',() => {
     round = 0;
     roundToCross = true;
     boxState =
-    [
-        false,
-        false, false, false, false,
-        false, false, false, false,
-    ];
+        [
+            false,
+            false, false, false, false,
+            false, false, false, false,
+        ];
 });
+
+//Set the theme
+
+moon.addEventListener('click', () => {
+    switchMode()
+})
+
+sun.addEventListener('click', () => {
+    switchMode()
+})
+
+
+function setDark() {
+    body.style.backgroundColor = "#313338"
+    reset.style.backgroundColor = "#B5BAC1"
+    reset.style.color = "#313338"
+    for (let i = 0; i < WinAll.length; i++) {
+        WinAll[i].style.backgroundColor = "#FFF"
+    }
+
+    for (let i = 0; i < IAll.length; i++) {
+        IAll[i].style.backgroundColor = "#FFF"
+    }
+
+    for (let i = 0; i < BoxAll.length; i++) {
+        BoxAll[i].style.borderColor = "#FFF"
+    }
+}
+
+function setLight() {
+    body.style.backgroundColor = "#FFF"
+}
+
+function switchMode() {
+    console.log(darkMode);
+    darkMode = strToBool(darkMode)
+    console.log(darkMode);
+
+    if (darkMode == false) {
+        moon.style.display = "none"
+        sun.style.display = "inline"
+        darkMode = !darkMode
+        localStorage.setItem("darkMode", darkMode)
+        console.log(darkMode);
+        setDark()
+
+    }
+    else {
+        sun.style.display = "none"
+        moon.style.display = "inline"
+        darkMode = !darkMode
+        localStorage.setItem("darkMode", darkMode)
+        setLight()
+
+
+    }
+}
+console.log(darkMode);
+darkMode = strToBool(darkMode)
+console.log(darkMode);
+
+if (darkMode == false) {
+    moon.style.display = "inline"
+    setLight()
+}
+
+if (darkMode == true) {
+    sun.style.display = "inline"
+    setDark()
+}
+
+
+console.log(darkMode);
+test = !!localStorage.getItem("darkMode")
+test2 = localStorage.getItem("darkMode")
+console.log(test2);
+console.log(test);
