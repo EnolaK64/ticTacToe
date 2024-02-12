@@ -212,11 +212,35 @@ function checkIfPlayed(pos, varBox) {
     if (boxState[pos] == false) {
 
         round++
+        if (darkMode == false) {
+            if (roundToCross == true) {
 
+                boxState[pos] = "C"
+                varBox.src = "./assets/cross.svg"
+                roundToCross = !roundToCross
+                checkWins()
+
+            }
+            else {
+
+                boxState[pos] = "R"
+                varBox.src = "./assets/ring.svg"
+                roundToCross = !roundToCross
+                checkWins()
+
+            }
+        }
+    }
+
+
+//BUG
+
+
+    else {
         if (roundToCross == true) {
 
             boxState[pos] = "C"
-            varBox.src = "./assets/cross.svg"
+            varBox.src = "./assets/crossWhite.svg"
             roundToCross = !roundToCross
             checkWins()
 
@@ -224,13 +248,15 @@ function checkIfPlayed(pos, varBox) {
         else {
 
             boxState[pos] = "R"
-            varBox.src = "./assets/ring.svg"
+            varBox.src = "./assets/ringWhite.svg"
             roundToCross = !roundToCross
             checkWins()
 
         }
     }
 }
+
+
 function foundAWin(WinId) {
     console.log("WinId: " + WinId);
     if (WinId == 0) {
@@ -421,7 +447,7 @@ function setDark() {
     }
 
     for (let i = 0; i < IAll.length; i++) {
-        IAll[i].style.backgroundColor = "#FFF"
+        IAll[i].style.fill = "white"
     }
 
     for (let i = 0; i < BoxAll.length; i++) {
