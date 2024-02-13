@@ -59,7 +59,7 @@ body {
     margin-top: 32px;
     margin-left: 5px;
     position: absolute;
-    width: 214px;
+    width: 215px;
     height: 1px;
     border-radius: 90px;
     background: #000;
@@ -197,4 +197,8 @@ a {
 .themeImg{
     display: none;
     width: 40px;
+}
+
+#moon{
+    display: inline;
 }

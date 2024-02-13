@@ -3,9 +3,13 @@
 // theme
 var body = document.querySelector("body")
 
+//github logo
+var githubLogo = document.getElementById("GitHubLogo")
+
 // theme imgs
 var sun = document.getElementById("sun");
 var moon = document.getElementById("moon");
+
 
 // save the theme choose
 var darkMode = localStorage.getItem("darkMode")
@@ -48,6 +52,8 @@ var IM2 = document.getElementById("IM2");
 var IM3 = document.getElementById("IM3");
 var IM4 = document.getElementById("IM4");
 
+var MAll = [M1, M2, M3, M4];
+var IMAll = [IM1, IM2, IM3, IM4];
 //Center
 var center = document.getElementById("C");
 //images
@@ -181,7 +187,7 @@ function Freset() {
 }
 
 function played(strBox, varBox) {
-
+    console.log("test");
     var position = 0
     var splitedBox = strBox.split("")
     if (winFound == false) {
@@ -210,51 +216,39 @@ function played(strBox, varBox) {
 function checkIfPlayed(pos, varBox) {
 
     if (boxState[pos] == false) {
-
         round++
-        if (darkMode == false) {
-            if (roundToCross == true) {
-
-                boxState[pos] = "C"
-                varBox.src = "./assets/cross.svg"
-                roundToCross = !roundToCross
-                checkWins()
-
-            }
-            else {
-
-                boxState[pos] = "R"
-                varBox.src = "./assets/ring.svg"
-                roundToCross = !roundToCross
-                checkWins()
-
-            }
-        }
-    }
-
-
-//BUG
-
-
-    else {
         if (roundToCross == true) {
 
+
+            if (darkMode == false) {
+                varBox.src = "./assets/cross.svg"
+            }
+            else {
+                varBox.src = "./assets/crossWhite.svg"
+            }
             boxState[pos] = "C"
-            varBox.src = "./assets/crossWhite.svg"
             roundToCross = !roundToCross
             checkWins()
 
         }
         else {
 
+            if (darkMode == false) {
+                varBox.src = "./assets/ring.svg"
+            }
+            else {
+                varBox.src = "./assets/ringWhite.svg"
+
+            }
             boxState[pos] = "R"
-            varBox.src = "./assets/ringWhite.svg"
             roundToCross = !roundToCross
             checkWins()
 
         }
     }
 }
+
+
 
 
 function foundAWin(WinId) {
@@ -439,15 +433,17 @@ sun.addEventListener('click', () => {
 
 
 function setDark() {
+    moon.style.display = "none"
+    sun.style.display = "inline"
     body.style.backgroundColor = "#313338"
-    reset.style.backgroundColor = "#B5BAC1"
+    reset.style.backgroundColor = "#FFF"
     reset.style.color = "#313338"
-    for (let i = 0; i < WinAll.length; i++) {
+    githubLogo.src = "./assets/github-mark-white.svg"
+    for (let i = 0; i < WinAll.length - 2; i++) {
         WinAll[i].style.backgroundColor = "#FFF"
-    }
-
-    for (let i = 0; i < IAll.length; i++) {
-        IAll[i].style.fill = "white"
+        WinAll[i].style.borderColor = "#FFF"
+        WinO.style.color = "#FFF"
+        WinX.style.color = "#FFF"
     }
 
     for (let i = 0; i < BoxAll.length; i++) {
@@ -456,26 +452,34 @@ function setDark() {
 }
 
 function setLight() {
+    sun.style.display = "none"
+    moon.style.display = "inline"
     body.style.backgroundColor = "#FFF"
+    reset.style.backgroundColor = "#313338"
+    reset.style.color = "#FFF"
+    githubLogo.src = "./assets/github-mark.svg"
+    for (let i = 0; i < WinAll.length; i++) {
+        WinAll[i].style.backgroundColor = "#000"
+        WinAll[i].style.borderColor = "#000"
+        WinO.style.color = "#313338"
+        WinX.style.color = "#313338"
+    }
+
+    for (let i = 0; i < BoxAll.length; i++) {
+        BoxAll[i].style.borderColor = "#000"
+    }
 }
 
 function switchMode() {
-    console.log(darkMode);
     darkMode = strToBool(darkMode)
-    console.log(darkMode);
 
     if (darkMode == false) {
-        moon.style.display = "none"
-        sun.style.display = "inline"
         darkMode = !darkMode
         localStorage.setItem("darkMode", darkMode)
-        console.log(darkMode);
         setDark()
 
     }
     else {
-        sun.style.display = "none"
-        moon.style.display = "inline"
         darkMode = !darkMode
         localStorage.setItem("darkMode", darkMode)
         setLight()
