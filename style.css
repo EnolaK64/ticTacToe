@@ -1,6 +1,7 @@
 body {
     margin: 0px;
     padding: 0px;
+    transition: 0.3s;
 }
 
 #all {

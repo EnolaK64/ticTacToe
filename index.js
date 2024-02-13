@@ -14,7 +14,6 @@ var moon = document.getElementById("moon");
 // save the theme choose
 var darkMode = localStorage.getItem("darkMode")
 if (darkMode == undefined) {
-    console.log("test");
     darkMode = false
     localStorage.setItem("darkMode", darkMode)
 }
@@ -510,9 +509,6 @@ if (darkMode == true) {
     setDark()
 }
 
-
-test = !!localStorage.getItem("darkMode")
-test2 = localStorage.getItem("darkMode")
 
 
 console.log("Never Gonna give you up never gonna let you down...")
