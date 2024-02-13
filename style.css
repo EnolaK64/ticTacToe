@@ -2,6 +2,7 @@ body {
     margin: 0px;
     padding: 0px;
     transition: 0.3s;
+    
 }
 
 #all {
@@ -121,6 +122,8 @@ body {
     margin-top: 0px;
     position: absolute;
     display: none;
+    transition: 0.3s;
+
 }
 
 .winTxt {
@@ -160,6 +163,7 @@ img {
 #GitHubLogo {
     width: auto;
     height: 40px;
+
 }
 
 #Licence {
@@ -186,6 +190,8 @@ a {
     background-color: #333;
     color: #FFF;
     top: 272px;
+    transition: 0.3s;
+
 }
 
 @media print { 
@@ -198,6 +204,8 @@ a {
 .themeImg{
     display: none;
     width: 40px;
+    transition: 0.3s;
+
 }
 
 #moon{
