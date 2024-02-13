@@ -40,7 +40,6 @@ var IC4 = document.getElementById("IC4");
 
 
 
-
 //Middles
 var M1 = document.getElementById("M1");
 var M2 = document.getElementById("M2");
@@ -52,15 +51,23 @@ var IM2 = document.getElementById("IM2");
 var IM3 = document.getElementById("IM3");
 var IM4 = document.getElementById("IM4");
 
-var MAll = [M1, M2, M3, M4];
-var IMAll = [IM1, IM2, IM3, IM4];
+
 //Center
 var center = document.getElementById("C");
 //images
 var Icenter = document.getElementById("IC");
 
-var IAll = [IC1, IC2, IC3, IC4, IM1, IM2, IM3, IM4, Icenter];
-var BoxAll = [C1, C2, C3, C4, M1, M2, M3, M4, center]
+var IAll = [
+    Icenter,
+    IC1, IC2, IC3, IC4,
+    IM1, IM2, IM3, IM4
+];
+
+var BoxAll = [
+    center,
+    C1, C2, C3, C4,
+    M1, M2, M3, M4
+];
 
 
 //Wins
@@ -87,6 +94,14 @@ var winFound = false
 // true = played
 // C = Cross
 // R = Ring 
+/*
+[       
+    Center,
+    C1,C2,C3,C4,
+    M1,M2,M3,M4
+        ↓
+]
+*/
 var boxState =
     [
         false,
@@ -101,20 +116,6 @@ var boxStateNum =
         3, 8, 4
     ];
 
-/*
-    [       ↑
-        Center,
-        C1,C2,C3,C4,
-        M1,M2,M3,M4
-        
-    ]
-
-    gridmap:
-    [1][5][2]
-    [6][0][7]
-    [3][8][4]
-    
-*/
 //count round
 var round = 0
 
@@ -187,7 +188,6 @@ function Freset() {
 }
 
 function played(strBox, varBox) {
-    console.log("test");
     var position = 0
     var splitedBox = strBox.split("")
     if (winFound == false) {
@@ -252,7 +252,6 @@ function checkIfPlayed(pos, varBox) {
 
 
 function foundAWin(WinId) {
-    console.log("WinId: " + WinId);
     if (WinId == 0) {
         WinH1.style.display = "block"
     }
@@ -307,21 +306,12 @@ function checkWins() {
                 Y = boxStateNum[i * 3 + 1]
                 Z = boxStateNum[i * 3 + 2]
                 A = i
-                console.log("box X: " + X + " i: " + (i * 3));
-                console.log("box Y: " + Y + " i: " + (i * 3 + 1));
-                console.log("box Z: " + Z + " i: " + (i * 3 + 2));
-                console.log("");
             }
             else if (whichSide == 1) {
                 X = boxStateNum[i]
                 Y = boxStateNum[i + 3]
                 Z = boxStateNum[i + 6]
                 A = i + 3
-                console.log("box X: " + X + " i: " + (i + 4));
-                console.log("box Y: " + Y + " i: " + (i + 5));
-                console.log("box Z: " + Z + " i: " + (i + 6));
-                console.log(i);
-                console.log(A);
             }
 
             else if (whichSide == 2) {
@@ -344,10 +334,8 @@ function checkWins() {
                 boxState[X] != false &&
                 winFound == false
             ) {
-                console.log("A: " + A);
                 foundAWin(A)
                 winFound = true
-                console.log(boxState);
                 if (boxState[X] == "C") {
                     WinX.style.display = "inline"
                 }
@@ -355,15 +343,11 @@ function checkWins() {
                     WinO.style.display = "inline"
                 }
             }
-            console.log(winFound);
-            console.log("round: " + round);
-            console.log(("winFound: " + winFound));
         }
         whichSide++;
     }
 
     if (round >= 9 && winFound == false) {
-        console.log(winFound);
         ega.style.display = "inline";
     };
 
@@ -439,16 +423,30 @@ function setDark() {
     reset.style.backgroundColor = "#FFF"
     reset.style.color = "#313338"
     githubLogo.src = "./assets/github-mark-white.svg"
-    for (let i = 0; i < WinAll.length - 2; i++) {
+    for (let i = 0; i < WinAll.length; i++) {
         WinAll[i].style.backgroundColor = "#FFF"
         WinAll[i].style.borderColor = "#FFF"
         WinO.style.color = "#FFF"
+        WinO.style.backgroundColor = "#313338"
         WinX.style.color = "#FFF"
+        WinX.style.backgroundColor = "#313338"
     }
 
     for (let i = 0; i < BoxAll.length; i++) {
         BoxAll[i].style.borderColor = "#FFF"
     }
+
+    for (let i = 0; i < boxState.length; i++) {
+        if (boxState[i] == "R") {
+            IAll[i].src = "./assets/ringWhite.svg"
+
+        }
+        else if (boxState[i] == "C") {
+            IAll[i].src = "./assets/crossWhite.svg"
+        }
+
+    }
+
 }
 
 function setLight() {
@@ -462,11 +460,24 @@ function setLight() {
         WinAll[i].style.backgroundColor = "#000"
         WinAll[i].style.borderColor = "#000"
         WinO.style.color = "#313338"
+        WinO.style.backgroundColor = "#FFF"
         WinX.style.color = "#313338"
+        WinX.style.backgroundColor = "#FFF"
     }
+
 
     for (let i = 0; i < BoxAll.length; i++) {
         BoxAll[i].style.borderColor = "#000"
+    }
+    //change symbole color
+    for (let i = 0; i < boxState.length; i++) {
+        if (boxState[i] == "R") {
+            IAll[i].src = "./assets/ring.svg"
+        }
+        else if (boxState[i] == "C") {
+            IAll[i].src = "./assets/cross.svg"
+        }
+
     }
 }
 
@@ -487,9 +498,7 @@ function switchMode() {
 
     }
 }
-console.log(darkMode);
 darkMode = strToBool(darkMode)
-console.log(darkMode);
 
 if (darkMode == false) {
     moon.style.display = "inline"
@@ -502,8 +511,8 @@ if (darkMode == true) {
 }
 
 
-console.log(darkMode);
 test = !!localStorage.getItem("darkMode")
 test2 = localStorage.getItem("darkMode")
-console.log(test2);
-console.log(test);
+
+
+console.log("Never Gonna give you up never gonna let you down...")
