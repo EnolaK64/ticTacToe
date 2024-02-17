@@ -1,8 +1,11 @@
+
 body {
     margin: 0px;
     padding: 0px;
     transition: 0.3s;
-    
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 #all {
@@ -10,7 +13,7 @@ body {
     margin: 0 auto;
     top: 5px;
     width: 218px;
-    height: 218px;
+    padding-bottom: 100px;
 }
 
 #container>div {
@@ -30,6 +33,7 @@ body {
     width: 214px;
     height: 214px;
     /* border: 1px solid red; */
+    position: relative;
 }
 
 
@@ -88,38 +92,34 @@ body {
 }
 
 #WinV1 {
-    margin-top: 0px;
     margin-left: 32px;
     position: absolute;
     width: 1px;
-    height: 213px;
+    height: 215px;
     border-radius: 90px;
     background: #000;
 }
 
 #WinV2 {
-    margin-top: 0px;
     margin-left: 106px;
     position: absolute;
     width: 1px;
-    height: 213px;
+    height: 215px;
     border-radius: 90px;
     background: #000;
 }
 
 #WinV3 {
-    margin-top: 0px;
     margin-left: 182px;
     position: absolute;
     width: 1px;
-    height: 213px;
+    height: 215px;
     border-radius: 90px;
     background: #000;
 }
 
 .Win {
     border: 1px solid;
-    margin-top: 0px;
     position: absolute;
     display: none;
     transition: 0.3s;
@@ -128,7 +128,7 @@ body {
 
 .winTxt {
     display: none;
-    top: 230px;
+    bottom: 0px;
     font-size: 32px;
     border: 0px solid;
     position: absolute;
@@ -139,22 +139,6 @@ body {
     justify-content: center;
     align-items: center;
 }
-
-/* #ega {
-    text-align: center;
-
-}
-
-#WinX {
-
-    text-align: center;
-
-}
-
-#WinO {
-    text-align: center;
-
-} */
 
 img {
     width: 65px;
@@ -173,7 +157,6 @@ img {
 
 footer {
     border: 0px solid;
-    margin-top: 60px;
     margin-left: 5px;
     position: fixed;
     bottom: 5px;
@@ -184,14 +167,28 @@ a {
     text-decoration: none;
 }
 
+.btn{
+    display: inline;
+    border-radius: 5px;
+    background-color: #313338;
+    color: #FFF;
+    bottom: 5px;
+    transition: 0.3s;
+    font-size: 25px;
+    border: 0px solid;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
 #reset{
     display: inline;
     border-radius: 5px;
-    background-color: #333;
+    background-color: #313338;
     color: #FFF;
-    top: 272px;
+    bottom: 0px;
     transition: 0.3s;
-
+    font-size: 32px;
 }
 
 @media print { 
@@ -210,4 +207,23 @@ a {
 
 #moon{
     display: inline;
+}
+
+#score{
+    display: flex;
+}
+
+.score{
+    padding: 10px;
+    font-size: 25px;
+    
+}
+
+#resetScore{
+    position: absolute;
+    margin-left: 5px;
+}
+
+.winSimb{
+    bottom: 15px;
 }

@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <meta property="og:type" content="website">
     <meta property="og:title" content="ticTacToe" />
     <meta property="og:description" content="Play now my version of Tic-Tac-Toe made using pure JavaScript" />
@@ -26,9 +29,14 @@
     <div id="all">
         <div id="texts">
             <p id="ega" class="Win winTxt">Tie</p>
-            <p id="WinX" class="winTxt Win">Victory of X</p>
-            <p id="WinO" class="winTxt Win">Victory of O</p>
-            <button id="reset" class="Win winTxt">Reset</button>
+            <p id="WinX" class="winTxt Win winSimb">Win of X</p>
+            <p id="WinO" class="winTxt Win winSimb">Win of O</p>
+            <button id="reset" class="Win winTxt btn">Reset</button>
+            <div id="score">
+                <p id="score"></p>
+                <p id="scoreX" class="score">X:</p>
+                <p id="scoreO" class="score">O:</p>
+            </div>
         </div>
         <div id="WinDL" class="Win WinD"></div>
         <div id="WinDR" class="Win WinD"></div>
@@ -63,6 +71,7 @@
         </a>
         <img src="./assets/sunLightMode.svg" alt="Sun to switch to light mode" id="sun" class="themeImg" title="Switch to light Mode">
         <img src="./assets/moonDarkMode.svg" alt="Moon to switch to dark mode" id="moon" class="themeImg" title="Switch to dark Mode">
+        <button id="resetScore" class="btn">Reset</button>
     </footer>
     <script src="index.js"></script>
 </body>

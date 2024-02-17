@@ -1,5 +1,23 @@
 //All variables
 
+//score
+var scoreSave = localStorage.getItem("scoreSave")
+if (scoreSave == undefined) {
+    scoreSave = { x: 0, o: 0 }
+    localStorage.setItem("scoreSave", JSON.stringify(scoreSave))
+}
+else {
+    scoreSave = JSON.parse(scoreSave)
+    console.log(scoreSave);
+}
+var resetScore = document.getElementById("resetScore")
+
+
+
+var scoreX = document.getElementById("scoreX")
+var scoreO = document.getElementById("scoreO")
+
+
 // theme
 var body = document.querySelector("body")
 
@@ -15,7 +33,7 @@ var moon = document.getElementById("moon");
 var darkMode = localStorage.getItem("darkMode")
 if (darkMode == undefined) {
     darkMode = false
-    localStorage.setItem("darkMode", darkMode)
+    localStorage.setItem("darkMode", JSON.stringify(darkMode))
 }
 
 
@@ -117,26 +135,6 @@ var boxStateNum =
 
 //count round
 var round = 0
-
-
-//string to bollean converter
-function strToBool(str) {
-    if (str == "false") {
-        str = false
-        return str
-    }
-    else if (str == "true") {
-        str = true
-        return str
-    }
-    else if (str == true || str == false) {
-        return str
-    }
-    else {
-        return "error"
-    }
-}
-
 
 //fuctions if win
 
@@ -337,10 +335,20 @@ function checkWins() {
                 winFound = true
                 if (boxState[X] == "C") {
                     WinX.style.display = "inline"
+
+                    console.log(scoreSave);
+                    scoreSave.x = scoreSave.x + 1
+                    console.log(scoreSave.x)
+                    localStorage.setItem("scoreSave", JSON.stringify(scoreSave))
+
                 }
                 else if (boxState[X] == "R") {
                     WinO.style.display = "inline"
+                    scoreSave.o = scoreSave.o + 1
+                    localStorage.setItem("scoreSave", JSON.stringify(scoreSave))
+
                 }
+                setScore()
             }
         }
         whichSide++;
@@ -414,7 +422,13 @@ sun.addEventListener('click', () => {
     switchMode()
 })
 
+//reset the win counter
+resetScore.addEventListener('click', ()=> {
+    scoreSave = {x: 0, o: 0}
+    localStorage.setItem("scoreSave", JSON.stringify(scoreSave))
+    setScore()
 
+})
 function setDark() {
     moon.style.display = "none"
     sun.style.display = "inline"
@@ -429,6 +443,12 @@ function setDark() {
         WinO.style.backgroundColor = "#313338"
         WinX.style.color = "#FFF"
         WinX.style.backgroundColor = "#313338"
+        ega.style.color = "#FFF"
+        scoreO.style.color = "#FFF"
+        scoreX.style.color = "#FFF"
+        resetScore.style.color = "#313338"
+        resetScore.style.backgroundColor = "#FFF"
+
     }
 
     for (let i = 0; i < BoxAll.length; i++) {
@@ -456,12 +476,17 @@ function setLight() {
     reset.style.color = "#FFF"
     githubLogo.src = "./assets/github-mark.svg"
     for (let i = 0; i < WinAll.length; i++) {
-        WinAll[i].style.backgroundColor = "#000"
-        WinAll[i].style.borderColor = "#000"
+        WinAll[i].style.backgroundColor = "#313338"
+        WinAll[i].style.borderColor = "#313338"
         WinO.style.color = "#313338"
         WinO.style.backgroundColor = "#FFF"
         WinX.style.color = "#313338"
         WinX.style.backgroundColor = "#FFF"
+        ega.style.color = "#313338"
+        scoreO.style.color = "#313338"
+        scoreX.style.color = "#313338"
+        resetScore.style.color = "#FFF"
+        resetScore.style.backgroundColor = "#313338"
     }
 
 
@@ -481,7 +506,7 @@ function setLight() {
 }
 
 function switchMode() {
-    darkMode = strToBool(darkMode)
+    darkMode = JSON.parse(darkMode)
 
     if (darkMode == false) {
         darkMode = !darkMode
@@ -497,7 +522,12 @@ function switchMode() {
 
     }
 }
-darkMode = strToBool(darkMode)
+
+function setScore() {
+    scoreO.innerHTML = "O: " + scoreSave.o
+    scoreX.innerHTML = "X: " + scoreSave.x
+}
+darkMode = JSON.parse(darkMode)
 
 if (darkMode == false) {
     moon.style.display = "inline"
@@ -508,6 +538,8 @@ if (darkMode == true) {
     sun.style.display = "inline"
     setDark()
 }
+
+setScore()
 
 
 
