@@ -132,6 +132,7 @@ body {
     font-size: 32px;
     border: 0px solid;
     position: absolute;
+    bottom: 15px;
 }
 
 #texts{
@@ -222,8 +223,4 @@ a {
 #resetScore{
     position: absolute;
     margin-left: 5px;
-}
-
-.winSimb{
-    bottom: 15px;
 }
