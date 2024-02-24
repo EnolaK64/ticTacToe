@@ -1,4 +1,12 @@
 //All variables
+var test = document.querySelector("button")
+// XMLHttpRequest
+var xhrStat = 0
+var xhr = new XMLHttpRequest
+var url = "https://enolak64.github.io/ticTacToe/assets/"
+//assets
+var assets = [null, null, null, null]
+var assetsUrl = ["cross.svg", "crossWhite.svg", "ring.svg", "ringWhite.svg"]
 
 //score
 var scoreSave = localStorage.getItem("scoreSave")
@@ -50,10 +58,6 @@ var C2 = document.getElementById("C2");
 var C3 = document.getElementById("C3");
 var C4 = document.getElementById("C4");
 //images
-var IC1 = document.getElementById("IC1");
-var IC2 = document.getElementById("IC2");
-var IC3 = document.getElementById("IC3");
-var IC4 = document.getElementById("IC4");
 
 
 
@@ -63,21 +67,17 @@ var M2 = document.getElementById("M2");
 var M3 = document.getElementById("M3");
 var M4 = document.getElementById("M4");
 //images
-var IM1 = document.getElementById("IM1");
-var IM2 = document.getElementById("IM2");
-var IM3 = document.getElementById("IM3");
-var IM4 = document.getElementById("IM4");
 
 
 //Center
 var center = document.getElementById("C");
 //images
-var Icenter = document.getElementById("IC");
+// var Icenter = document.getElementById("IC");
 
-var IAll = [
-    Icenter,
-    IC1, IC2, IC3, IC4,
-    IM1, IM2, IM3, IM4
+var All = [
+    center,
+    C1, C2, C3, C4,
+    M1, M2, M3, M4
 ];
 
 var BoxAll = [
@@ -136,6 +136,35 @@ var boxStateNum =
 //count round
 var round = 0
 
+
+//Get all assets
+xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        console.log("assets get : " + url + assetsUrl[xhrStat]);
+        assets[xhrStat] = (xhr.response)
+        xhrStat++
+        if (xhrStat < assetsUrl.length) {
+            getAssets()
+        }
+        else{
+            localStorage.setItem("assets", JSON.stringify(assets))
+            console.log("All assets download");
+        }
+    }
+};
+
+
+function getAssets() {
+
+    xhr.open('GET', url + assetsUrl[xhrStat])
+    xhr.send()
+}
+
+
+
+
+
+
 //fuctions if win
 
 function FWinDL() {
@@ -179,49 +208,48 @@ function hideWins() {
 }
 
 function Freset() {
-    for (let i = 0; i < IAll.length; i++) {
-        IAll[i].src = ""
+    for (let i = 0; i < All.length; i++) {
+        All[i].innerHTML = ""
     }
 }
 
 function played(strBox, varBox) {
+    // console.log("$cplayed", "color:white", "backgroundcolor: black ");
     var position = 0
     var splitedBox = strBox.split("")
+    if (splitedBox[0] != "C" && splitedBox[0] != "M" && splitedBox[0] != "c" || splitedBox[1] > 4) {
+        return console.error("Invalid box")
+    }
+    
     if (winFound == false) {
-        if (strBox == "Icenter") {
+        if (strBox == "center") {
+            checkIfPlayed(position, varBox)
+        }
+        else if (splitedBox[0] == "M") {
+
+            position = 4 + +splitedBox[1]
 
             checkIfPlayed(position, varBox)
         }
-
-        else if (splitedBox[1] == "M") {
-
-            position = 4 + +splitedBox[2]
-
+        else if (splitedBox[0] == "C") {
+            position = +splitedBox[1]
             checkIfPlayed(position, varBox)
         }
-        else if (splitedBox[1] == "C") {
-
-            position = +splitedBox[2]
-            checkIfPlayed(position, varBox)
-
-        }
-
     }
 }
 
 // Check if the box is played or not and draw a cross or a ring
 function checkIfPlayed(pos, varBox) {
-
+    console.log("pos = " + pos);
     if (boxState[pos] == false) {
         round++
         if (roundToCross == true) {
 
-
             if (darkMode == false) {
-                varBox.src = "./assets/cross.svg"
+                varBox.innerHTML = assets[0]
             }
             else {
-                varBox.src = "./assets/crossWhite.svg"
+                varBox.innerHTML = assets[1]
             }
             boxState[pos] = "C"
             roundToCross = !roundToCross
@@ -231,10 +259,10 @@ function checkIfPlayed(pos, varBox) {
         else {
 
             if (darkMode == false) {
-                varBox.src = "./assets/ring.svg"
+                varBox.innerHTML = assets[2]
             }
             else {
-                varBox.src = "./assets/ringWhite.svg"
+                varBox.innerHTML = assets[3]
 
             }
             boxState[pos] = "R"
@@ -362,39 +390,39 @@ function checkWins() {
 
 
 C1.addEventListener('click', () => {
-    played("IC1", IC1);
+    played("C1", C1);
 });
 
 C2.addEventListener('click', () => {
-    played("IC2", IC2);
+    played("C2", C2);
 });
 
 C3.addEventListener('click', () => {
-    played("IC3", IC3);
+    played("C3", C3);
 });
 
 C4.addEventListener('click', () => {
-    played("IC4", IC4);
+    played("C4", C4);
 });
 
 M1.addEventListener('click', () => {
-    played("IM1", IM1);
+    played("M1", M1);
 });
 
 M2.addEventListener('click', () => {
-    played("IM2", IM2);
+    played("M2", M2);
 });
 
 M3.addEventListener('click', () => {
-    played("IM3", IM3);
+    played("M3", M3);
 });
 
 M4.addEventListener('click', () => {
-    played("IM4", IM4);
+    played("M4", M4);
 });
 
 center.addEventListener('click', () => {
-    played("Icenter", Icenter);
+    played("center", center);
 });
 
 reset.addEventListener('click', () => {
@@ -423,8 +451,8 @@ sun.addEventListener('click', () => {
 })
 
 //reset the win counter
-resetScore.addEventListener('click', ()=> {
-    scoreSave = {x: 0, o: 0}
+resetScore.addEventListener('click', () => {
+    scoreSave = { x: 0, o: 0 }
     localStorage.setItem("scoreSave", JSON.stringify(scoreSave))
     setScore()
 
@@ -436,19 +464,16 @@ function setDark() {
     reset.style.backgroundColor = "#FFF"
     reset.style.color = "#313338"
     githubLogo.src = "./assets/github-mark-white.svg"
-    for (let i = 0; i < WinAll.length; i++) {
+    WinO.style.color = "#FFF"
+    WinX.style.color = "#FFF"
+    ega.style.color = "#FFF"
+    scoreO.style.color = "#FFF"
+    scoreX.style.color = "#FFF"
+    resetScore.style.color = "#313338"
+    resetScore.style.backgroundColor = "#FFF"
+    for (let i = 0; i < WinAll.length - 2; i++) {
         WinAll[i].style.backgroundColor = "#FFF"
         WinAll[i].style.borderColor = "#FFF"
-        WinO.style.color = "#FFF"
-        WinO.style.backgroundColor = "#313338"
-        WinX.style.color = "#FFF"
-        WinX.style.backgroundColor = "#313338"
-        ega.style.color = "#FFF"
-        scoreO.style.color = "#FFF"
-        scoreX.style.color = "#FFF"
-        resetScore.style.color = "#313338"
-        resetScore.style.backgroundColor = "#FFF"
-
     }
 
     for (let i = 0; i < BoxAll.length; i++) {
@@ -457,11 +482,11 @@ function setDark() {
 
     for (let i = 0; i < boxState.length; i++) {
         if (boxState[i] == "R") {
-            IAll[i].src = "./assets/ringWhite.svg"
+            All[i].innerHTML = assets[3]
 
         }
         else if (boxState[i] == "C") {
-            IAll[i].src = "./assets/crossWhite.svg"
+            All[i].innerHTML = assets[1]
         }
 
     }
@@ -475,20 +500,18 @@ function setLight() {
     reset.style.backgroundColor = "#313338"
     reset.style.color = "#FFF"
     githubLogo.src = "./assets/github-mark.svg"
-    for (let i = 0; i < WinAll.length; i++) {
+    WinO.style.color = "#313338"
+    WinX.style.color = "#313338"
+    ega.style.color = "#313338"
+    scoreO.style.color = "#313338"
+    scoreX.style.color = "#313338"
+    resetScore.style.color = "#FFF"
+    resetScore.style.backgroundColor = "#313338"
+
+    for (let i = 0; i < WinAll.length - 2; i++) {
         WinAll[i].style.backgroundColor = "#313338"
         WinAll[i].style.borderColor = "#313338"
-        WinO.style.color = "#313338"
-        WinO.style.backgroundColor = "#FFF"
-        WinX.style.color = "#313338"
-        WinX.style.backgroundColor = "#FFF"
-        ega.style.color = "#313338"
-        scoreO.style.color = "#313338"
-        scoreX.style.color = "#313338"
-        resetScore.style.color = "#FFF"
-        resetScore.style.backgroundColor = "#313338"
     }
-
 
     for (let i = 0; i < BoxAll.length; i++) {
         BoxAll[i].style.borderColor = "#000"
@@ -496,10 +519,10 @@ function setLight() {
     //change symbole color
     for (let i = 0; i < boxState.length; i++) {
         if (boxState[i] == "R") {
-            IAll[i].src = "./assets/ring.svg"
+            All[i].innerHTML = assets[2]
         }
         else if (boxState[i] == "C") {
-            IAll[i].src = "./assets/cross.svg"
+            All[i].innerHTML = assets[0]
         }
 
     }
@@ -543,4 +566,21 @@ setScore()
 
 
 
+
+if (localStorage.getItem("assets") == undefined) {
+    getAssets()
+}
+else{
+    assets = JSON.parse(localStorage.getItem("assets"))
+    console.log(assets);
+}
+
+
 console.log("Never Gonna give you up never gonna let you down...")
+var test2 = 0
+test.addEventListener('click', () => {
+
+    xhr.open('GET', "https://google.com")
+    xhr.send()
+})
+
