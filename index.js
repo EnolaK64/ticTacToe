@@ -1,5 +1,4 @@
 //All variables
-var test = document.querySelector("button")
 // XMLHttpRequest
 var xhrStat = 0
 var xhr = new XMLHttpRequest
@@ -577,10 +576,4 @@ else{
 
 
 console.log("Never Gonna give you up never gonna let you down...")
-var test2 = 0
-test.addEventListener('click', () => {
-
-    xhr.open('GET', "https://google.com")
-    xhr.send()
-})
 
